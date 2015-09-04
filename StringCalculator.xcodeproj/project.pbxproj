@@ -14,6 +14,8 @@
 		EA2A16FD1B98792200F5FF08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2A16FB1B98792200F5FF08 /* LaunchScreen.storyboard */; };
 		EA2A17081B98792200F5FF08 /* StringCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A17071B98792200F5FF08 /* StringCalculatorTests.swift */; };
 		EA2A17131B98792200F5FF08 /* StringCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A17121B98792200F5FF08 /* StringCalculatorUITests.swift */; };
+		EAC2046C1B99C7F00067F620 /* StringCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2046B1B99C7F00067F620 /* StringCalculator.swift */; settings = {ASSET_TAGS = (); }; };
+		EAC2046D1B99C8880067F620 /* StringCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC2046B1B99C7F00067F620 /* StringCalculator.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,7 @@
 		EA2A170E1B98792200F5FF08 /* StringCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StringCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2A17121B98792200F5FF08 /* StringCalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCalculatorUITests.swift; sourceTree = "<group>"; };
 		EA2A17141B98792200F5FF08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAC2046B1B99C7F00067F620 /* StringCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCalculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 				EA2A16F91B98792200F5FF08 /* Assets.xcassets */,
 				EA2A16FB1B98792200F5FF08 /* LaunchScreen.storyboard */,
 				EA2A16FE1B98792200F5FF08 /* Info.plist */,
+				EAC2046B1B99C7F00067F620 /* StringCalculator.swift */,
 			);
 			path = StringCalculator;
 			sourceTree = "<group>";
@@ -255,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC2046C1B99C7F00067F620 /* StringCalculator.swift in Sources */,
 				EA2A16F51B98792200F5FF08 /* ViewController.swift in Sources */,
 				EA2A16F31B98792200F5FF08 /* AppDelegate.swift in Sources */,
 			);
@@ -264,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC2046D1B99C8880067F620 /* StringCalculator.swift in Sources */,
 				EA2A17081B98792200F5FF08 /* StringCalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +489,7 @@
 				EA2A17191B98792200F5FF08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA2A171A1B98792200F5FF08 /* Build configuration list for PBXNativeTarget "StringCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +498,7 @@
 				EA2A171C1B98792200F5FF08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA2A171D1B98792200F5FF08 /* Build configuration list for PBXNativeTarget "StringCalculatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +507,7 @@
 				EA2A171F1B98792200F5FF08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
