@@ -6,8 +6,12 @@ class StringCalculatorTests: XCTestCase {
         XCTAssertEqual(StringCalculator.add(""), 0)
     }
     
-    func testOneDigitStringReturnsDigit() {
+    func testOneNumberReturnsNumber() {
         XCTAssertEqual(StringCalculator.add("1"), 1)
         XCTAssertEqual(StringCalculator.add("42"), 42)
+    }
+    
+    func testAddingTwoNumbers() {
+        XCTAssertEqual(StringCalculator.add("1,2"), 3)
     }
 }
