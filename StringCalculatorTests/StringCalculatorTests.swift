@@ -8,5 +8,6 @@ class StringCalculatorTests: XCTestCase {
     
     func testOneDigitStringReturnsDigit() {
         XCTAssertEqual(StringCalculator.add("1"), 1)
+        XCTAssertEqual(StringCalculator.add("42"), 42)
     }
 }
