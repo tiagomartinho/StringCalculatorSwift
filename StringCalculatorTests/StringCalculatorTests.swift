@@ -14,4 +14,8 @@ class StringCalculatorTests: XCTestCase {
     func testAddingTwoNumbers() {
         XCTAssertEqual(StringCalculator.add("1,2"), 3)
     }
+    
+    func testAddingUnknownAmountOfNumbers() {
+        XCTAssertEqual(StringCalculator.add("1,2,45,126,7"), 181)
+    }
 }
