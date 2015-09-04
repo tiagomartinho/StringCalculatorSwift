@@ -2,6 +2,11 @@ import Foundation
 
 class StringCalculator {
     static func add(numbers:String)->Int{
-        return 0
+        if numbers == "" {
+            return 0
+        }
+        else {
+            return 1
+        }
     }
 }
