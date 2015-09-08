@@ -7,14 +7,14 @@ class StringCalculator {
     
     static func add(numbers:String)->Int{
         var result = 0
-        let numbersDivided = divideStringsBySeparator(divideStringsBySeparator([numbers],separator: StringCalculator.CommaSeparator),separator: StringCalculator.NewLineSeparator)
+        let numbersDivided = divideStrings(divideStrings([numbers],WithSeparator: StringCalculator.CommaSeparator),WithSeparator: StringCalculator.NewLineSeparator)
         for number in numbersDivided {
             result += number.numberOrZero
         }
         return result
     }
     
-    static func divideStringsBySeparator(strings:[String],separator:String)->[String]{
+    static func divideStrings(strings:[String],WithSeparator separator:String)->[String]{
         var result = [String]()
         for value in strings {
             result += value.componentsSeparatedByString(separator)
