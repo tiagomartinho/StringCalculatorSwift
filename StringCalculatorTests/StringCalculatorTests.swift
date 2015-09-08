@@ -18,4 +18,8 @@ class StringCalculatorTests: XCTestCase {
     func testAddingUnknownAmountOfNumbers() {
         XCTAssertEqual(StringCalculator.add("1,2,45,126,7"), 181)
     }
+    
+    func DISABLE_testAddingHandleNewLinesSeparators() {
+        XCTAssertEqual(StringCalculator.add("1\n2,3"), 6)
+    }
 }
