@@ -7,7 +7,7 @@ class StringCalculator {
     
     static func add(numbers:String)->Int{
         var result = 0
-        let numbersDivided = divideStringsBySeparator([numbers],separator: StringCalculator.CommaSeparator)
+        let numbersDivided = divideStringsBySeparator(divideStringsBySeparator([numbers],separator: StringCalculator.CommaSeparator),separator: StringCalculator.NewLineSeparator)
         for number in numbersDivided {
             result += number.numberOrZero
         }

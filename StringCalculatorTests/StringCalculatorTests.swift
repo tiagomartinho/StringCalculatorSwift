@@ -19,7 +19,7 @@ class StringCalculatorTests: XCTestCase {
         XCTAssertEqual(StringCalculator.add("1,2,45,126,7"), 181)
     }
     
-    func DISABLE_testAddingHandleNewLinesSeparators() {
+    func testAddingHandleNewLinesSeparators() {
         XCTAssertEqual(StringCalculator.add("1\n2,3"), 6)
     }
 }
