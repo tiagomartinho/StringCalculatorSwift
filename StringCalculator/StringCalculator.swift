@@ -4,22 +4,22 @@ class StringCalculator {
     
     static let CommaSeparator = ","
     static let NewLineSeparator = "\n"
+    static let DefaultSeparators = [CommaSeparator, NewLineSeparator]
     
     static func add(numbers:String)->Int{
         var result = 0
-        let numbersDivided = divideStrings(divideStrings([numbers],WithSeparator: StringCalculator.CommaSeparator),WithSeparator: StringCalculator.NewLineSeparator)
+        let numbersDivided = divideNumbers(StringCalculator.DefaultSeparators,numbers:[numbers])
         for number in numbersDivided {
             result += number.numberOrZero
         }
         return result
     }
     
-    static func divideStrings(strings:[String],WithSeparator separator:String)->[String]{
-        var result = [String]()
-        for value in strings {
-            result += value.componentsSeparatedByString(separator)
+    static func divideNumbers(separators:[String], numbers:[String], currentSeparator:Int=0)->[String]{
+        if currentSeparator == separators.count {
+            return numbers
         }
-        return result
+        return divideNumbers(separators, numbers: numbers.flatMap { $0.componentsSeparatedByString(separators[currentSeparator]) }, currentSeparator: currentSeparator + 1)
     }
 }
 
