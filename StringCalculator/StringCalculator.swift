@@ -2,29 +2,29 @@ import Foundation
 
 class StringCalculator {
     
-    static let CommaSeparator = ","
-    static let NewLineSeparator = "\n"
-    static let DefaultSeparators = [CommaSeparator, NewLineSeparator]
+    static let CommaDelimiter = ","
+    static let NewLineDelimiter = "\n"
+    static let DefaultDelimiters = [CommaDelimiter, NewLineDelimiter]
     
     static func add(numbers:String)->Int{
         var result = 0
-        let separators = extractSeparators(numbers)
-        let numbersDivided = divideNumbers(separators,numbers:[numbers])
+        let delimiters = extractDelimiters(numbers)
+        let numbersDivided = divideNumbers(delimiters,numbers:[numbers])
         for number in numbersDivided {
             result += number.numberOrZero
         }
         return result
     }
     
-    static func divideNumbers(separators:[String], numbers:[String], currentSeparator:Int=0)->[String]{
-        if currentSeparator == separators.count {
+    static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
+        if currentDelimiter == delimiters.count {
             return numbers
         }
-        return divideNumbers(separators, numbers: numbers.flatMap { $0.componentsSeparatedByString(separators[currentSeparator]) }, currentSeparator: currentSeparator + 1)
+        return divideNumbers(delimiters, numbers: numbers.flatMap { $0.componentsSeparatedByString(delimiters[currentDelimiter]) }, currentDelimiter: currentDelimiter + 1)
     }
     
-    static func extractSeparators(numbers:String)->[String]{
-        return StringCalculator.DefaultSeparators
+    static func extractDelimiters(numbers:String)->[String]{
+        return StringCalculator.DefaultDelimiters
     }
 }
 
