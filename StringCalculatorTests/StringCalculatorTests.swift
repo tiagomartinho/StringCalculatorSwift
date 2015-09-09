@@ -23,7 +23,7 @@ class StringCalculatorTests: XCTestCase {
         XCTAssertEqual(StringCalculator.add("1\n2,3"), 6)
     }
     
-    func DISABLE_testSupportDifferentDelimeters(){
-        XCTAssertEqual(StringCalculator.add("//;\n1;2"), 6)
+    func testSupportDifferentDelimeters(){
+        XCTAssertEqual(StringCalculator.add("//;\n1;2"), 3)
     }
 }

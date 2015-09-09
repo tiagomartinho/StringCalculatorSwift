@@ -4,7 +4,8 @@ class StringCalculator {
     
     static let CommaDelimiter = ","
     static let NewLineDelimiter = "\n"
-    static let DefaultDelimiters = [CommaDelimiter, NewLineDelimiter]
+    static let InitialDelimiter = "//"
+    static let DefaultDelimiters = [CommaDelimiter, NewLineDelimiter, InitialDelimiter]
     
     static func add(numbers:String)->Int{
         var result = 0
@@ -24,7 +25,12 @@ class StringCalculator {
     }
     
     static func extractDelimiters(numbers:String)->[String]{
-        return StringCalculator.DefaultDelimiters
+        var delimiters = StringCalculator.DefaultDelimiters
+        if numbers.hasPrefix("//") {
+            let delimiter = numbers.substringWithRange(Range<String.Index>(start: numbers.startIndex.advancedBy(2), end: numbers.startIndex.advancedBy(3)))
+            delimiters.append(delimiter)
+        }
+        return delimiters
     }
 }
 
