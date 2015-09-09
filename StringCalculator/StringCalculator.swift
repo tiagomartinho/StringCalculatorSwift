@@ -8,7 +8,8 @@ class StringCalculator {
     
     static func add(numbers:String)->Int{
         var result = 0
-        let numbersDivided = divideNumbers(StringCalculator.DefaultSeparators,numbers:[numbers])
+        let separators = extractSeparators(numbers)
+        let numbersDivided = divideNumbers(separators,numbers:[numbers])
         for number in numbersDivided {
             result += number.numberOrZero
         }
@@ -20,6 +21,10 @@ class StringCalculator {
             return numbers
         }
         return divideNumbers(separators, numbers: numbers.flatMap { $0.componentsSeparatedByString(separators[currentSeparator]) }, currentSeparator: currentSeparator + 1)
+    }
+    
+    static func extractSeparators(numbers:String)->[String]{
+        return StringCalculator.DefaultSeparators
     }
 }
 
