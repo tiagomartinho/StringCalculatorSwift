@@ -8,13 +8,9 @@ class StringCalculator {
     static let DefaultDelimiters = [CommaDelimiter, NewLineDelimiter, InitialDelimiter]
     
     static func add(numbers:String)->Int{
-        var result = 0
         let delimiters = extractDelimiters(numbers)
         let numbersDivided = divideNumbers(delimiters,numbers:[numbers])
-        for number in numbersDivided {
-            result += number.numberOrZero
-        }
-        return result
+        return numbersDivided.flatMap { $0.numberOrZero }.reduce(0, combine: +)
     }
     
     static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
