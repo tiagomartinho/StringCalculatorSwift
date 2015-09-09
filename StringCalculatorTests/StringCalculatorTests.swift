@@ -26,4 +26,8 @@ class StringCalculatorTests: XCTestCase {
     func testSupportDifferentDelimeters(){
         XCTAssertEqual(StringCalculator.add("//;\n1;2"), 3)
     }
+    
+    func testAddWithNegativeNumbersThrowsException(){
+        XCTAssertEqual(StringCalculator.add("-1,2"), 1)
+    }
 }
