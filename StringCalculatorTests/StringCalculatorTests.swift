@@ -3,31 +3,43 @@ import XCTest
 
 class StringCalculatorTests: XCTestCase {
     func testEmptyStringReturnsZero() {
-        XCTAssertEqual(StringCalculator.add(""), 0)
+        assertCalculator("",expected: 0)
     }
     
     func testOneNumberReturnsNumber() {
-        XCTAssertEqual(StringCalculator.add("1"), 1)
-        XCTAssertEqual(StringCalculator.add("42"), 42)
+        assertCalculator("1",expected: 1)
+        assertCalculator("42",expected: 42)
     }
     
     func testAddingTwoNumbers() {
-        XCTAssertEqual(StringCalculator.add("1,2"), 3)
+        assertCalculator("1,2",expected: 3)
     }
     
     func testAddingUnknownAmountOfNumbers() {
-        XCTAssertEqual(StringCalculator.add("1,2,45,126,7"), 181)
+        assertCalculator("1,2,45,126,7",expected: 181)
     }
     
     func testAddingHandleNewLinesDelimiters() {
-        XCTAssertEqual(StringCalculator.add("1\n2,3"), 6)
+        assertCalculator("1\n2,3",expected: 6)
     }
     
     func testSupportDifferentDelimeters(){
-        XCTAssertEqual(StringCalculator.add("//;\n1;2"), 3)
+        assertCalculator("//;\n1;2",expected: 3)
     }
     
     func testAddWithNegativeNumbersThrowsException(){
-        XCTAssertEqual(StringCalculator.add("-1,2"), 1)
+        XCTAssertEqual(assertCalculator("-1,2",expected: 0),[-1])
+    }
+    
+    func assertCalculator(input:String,expected:Int)->[Int]{
+        do {
+            let result = try StringCalculator.add(input)
+            XCTAssertEqual(result, expected)
+        } catch StringCalculatorError.NegativeNotAllowed(let negativeNumbers){
+            return negativeNumbers
+        }
+        catch {
+        }
+        return [Int]()
     }
 }

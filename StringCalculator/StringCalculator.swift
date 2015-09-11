@@ -7,9 +7,18 @@ class StringCalculator {
     static let InitialDelimiter = "//"
     static let DefaultDelimiters = [CommaDelimiter, NewLineDelimiter, InitialDelimiter]
     
-    static func add(numbers:String)->Int{
+    static func add(numbers:String) throws ->Int {
         let delimiters = extractDelimiters(numbers)
         let numbersDivided = divideNumbers(delimiters,numbers:[numbers])
+        var negativeNumbers = [Int]()
+        for number in numbersDivided {
+            if number.numberOrZero < 0 {
+                negativeNumbers.append(number.numberOrZero)
+            }
+        }
+        if negativeNumbers.count > 0 {
+            throw StringCalculatorError.NegativeNotAllowed(negativeNumbers: negativeNumbers)
+        }
         return numbersDivided.flatMap { $0.numberOrZero }.reduce(0, combine: +)
     }
     
@@ -36,4 +45,8 @@ extension String {
         let number = formatter.numberFromString(self) as? Int
         return number ?? 0
     }
+}
+
+enum StringCalculatorError: ErrorType {
+    case NegativeNotAllowed(negativeNumbers: [Int])
 }
