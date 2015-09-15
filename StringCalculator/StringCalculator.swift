@@ -19,9 +19,9 @@ class StringCalculator {
         if negativeNumbers.count > 0 {
             throw StringCalculatorError.NegativeNotAllowed(negativeNumbers: negativeNumbers)
         }
-        return numbersDivided.flatMap { $0.numberOrZero }.reduce(0, combine: +)
+        return numbersDivided.flatMap { $0.numberOrZero <= 1000 ? $0.numberOrZero : 0 }.reduce(0, combine: +)
     }
-    
+
     static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
         if currentDelimiter == delimiters.count {
             return numbers
@@ -40,6 +40,7 @@ class StringCalculator {
 }
 
 extension String {
+    
     var numberOrZero:Int {
         let formatter = NSNumberFormatter()
         let number = formatter.numberFromString(self) as? Int

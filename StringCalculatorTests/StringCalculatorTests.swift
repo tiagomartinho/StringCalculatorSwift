@@ -35,6 +35,10 @@ class StringCalculatorTests: XCTestCase {
         XCTAssertEqual(assertCalculator("1,2",expected: 3),[])
     }
     
+    func testNumbersGreaterThanOneThousandGetIgnored(){
+        assertCalculator("1001,2",expected: 2)
+    }
+    
     func assertCalculator(input:String,expected:Int)->[Int]{
         do {
             let result = try StringCalculator.add(input)
