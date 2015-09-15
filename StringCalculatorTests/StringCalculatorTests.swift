@@ -31,6 +31,10 @@ class StringCalculatorTests: XCTestCase {
         XCTAssertEqual(assertCalculator("-1,2",expected: 0),[-1])
     }
     
+    func testAddWithoutNegativeNumbersDoesNotThrowsException(){
+        XCTAssertEqual(assertCalculator("1,2",expected: 3),[])
+    }
+    
     func assertCalculator(input:String,expected:Int)->[Int]{
         do {
             let result = try StringCalculator.add(input)
