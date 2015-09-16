@@ -21,7 +21,7 @@ class StringCalculator {
         }
         return numbersDivided.flatMap { $0.numberOrZero }.filter{ $0 <= 1000 }.reduce(0, combine: +)
     }
-
+    
     static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
         if currentDelimiter == delimiters.count {
             return numbers
@@ -32,7 +32,17 @@ class StringCalculator {
     static func extractDelimiters(numbers:String)->[String]{
         var delimiters = StringCalculator.DefaultDelimiters
         if numbers.hasPrefix("//") {
-            let delimiter = numbers.substringWithRange(Range<String.Index>(start: numbers.startIndex.advancedBy(2), end: numbers.startIndex.advancedBy(3)))
+            let startIndex:String.Index
+            let endIndex:String.Index
+            if numbers.containsString("[") && numbers.containsString("]") {
+                startIndex = numbers.rangeOfString("[", options: .BackwardsSearch)!.startIndex.advancedBy(1)
+                endIndex = numbers.rangeOfString("]", options: .BackwardsSearch)!.startIndex
+            }
+            else {
+                startIndex = numbers.startIndex.advancedBy(2)
+                endIndex = numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
+            }
+            let delimiter = numbers[startIndex..<endIndex]
             delimiters.append(delimiter)
         }
         return delimiters
