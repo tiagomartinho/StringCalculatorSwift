@@ -10,12 +10,7 @@ class StringCalculator {
     static func add(numbers:String) throws ->Int {
         let delimiters = extractDelimiters(numbers)
         let numbersDivided = divideNumbers(delimiters,numbers:[numbers])
-        var negativeNumbers = [Int]()
-        for number in numbersDivided {
-            if number.numberOrZero < 0 {
-                negativeNumbers.append(number.numberOrZero)
-            }
-        }
+        let negativeNumbers = extractNegativeNumbers(numbersDivided)
         if negativeNumbers.count > 0 {
             throw StringCalculatorError.NegativeNotAllowed(negativeNumbers: negativeNumbers)
         }
@@ -46,6 +41,10 @@ class StringCalculator {
             delimiters.append(delimiter)
         }
         return delimiters
+    }
+    
+    static func extractNegativeNumbers(numbers:[String])->[Int]{
+        return numbers.filter { $0.numberOrZero < 0 }.map { $0.numberOrZero }
     }
 }
 
