@@ -53,7 +53,8 @@ class StringCalculatorTests: XCTestCase {
     
     func assertCalculator(input:String,expected:Int)->[Int]{
         do {
-            let result = try StringCalculator.add(input)
+            let calculator = StringCalculator(numbers: input)
+            let result = try calculator.add()
             XCTAssertEqual(result, expected)
         } catch StringCalculatorError.NegativeNotAllowed(let negativeNumbers){
             return negativeNumbers

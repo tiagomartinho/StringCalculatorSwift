@@ -2,13 +2,20 @@ import Foundation
 
 class StringCalculator {
     
-    static let CommaDelimiter = ","
-    static let NewLineDelimiter = "\n"
-    static let InitialDelimiter = "//"
-    static let DefaultDelimiters = [CommaDelimiter, NewLineDelimiter, InitialDelimiter]
+    private let CommaDelimiter = ","
+    private let NewLineDelimiter = "\n"
+    private let InitialDelimiter = "//"
     
-    static func add(numbers:String) throws ->Int {
-        let delimiters = extractDelimiters(numbers)
+    private let DefaultDelimiters: [String]
+    private let numbers:String
+    
+    init(numbers:String){
+        self.numbers = numbers
+        self.DefaultDelimiters = [CommaDelimiter, NewLineDelimiter, InitialDelimiter]
+    }
+    
+    func add() throws ->Int {
+        let delimiters = extractDelimiters()
         let numbersDivided = divideNumbers(delimiters,numbers:[numbers])
         let negativeNumbers = extractNegativeNumbers(numbersDivided)
         if negativeNumbers.count > 0 {
@@ -17,21 +24,21 @@ class StringCalculator {
         return numbersDivided.map { $0.numberOrZero }.filter { $0 <= 1000 }.reduce(0, combine: +)
     }
     
-    static func extractDelimiters(numbers:String)->[String]{
-        var delimiters = StringCalculator.DefaultDelimiters
-        if hasCustomDelimiters(numbers) {
-            delimiters.append(extractCustomDelimiter(numbers))
+    private func extractDelimiters()->[String]{
+        var delimiters = DefaultDelimiters
+        if hasCustomDelimiters {
+            delimiters.append(extractCustomDelimiter())
         }
         return delimiters
     }
     
-    static func hasCustomDelimiters(numbers:String)->Bool {
+    private var hasCustomDelimiters:Bool {
         return numbers.hasPrefix(InitialDelimiter)
     }
     
-    static func extractCustomDelimiter(numbers:String)->String{
-        var startIndex = numbers.startIndex.advancedBy(InitialDelimiter.characters.count)
-        var endIndex = numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
+    private func extractCustomDelimiter()->String {
+        var startIndex = indexAfterInitialDelimiter
+        var endIndex = indexBeforeFinalDelimiter
         
         if numbers.containsString("[") && numbers.containsString("]") {
             startIndex = numbers.rangeOfString("[", options: .BackwardsSearch)!.startIndex.advancedBy(1)
@@ -41,14 +48,22 @@ class StringCalculator {
         return numbers[startIndex..<endIndex]
     }
     
-    static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
+    private var indexAfterInitialDelimiter:String.Index {
+        return numbers.startIndex.advancedBy(InitialDelimiter.characters.count)
+    }
+    
+    private var indexBeforeFinalDelimiter:String.Index {
+        return numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
+    }
+    
+    private func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String] {
         if currentDelimiter == delimiters.count {
             return numbers
         }
         return divideNumbers(delimiters, numbers: numbers.flatMap { $0.componentsSeparatedByString(delimiters[currentDelimiter]) }, currentDelimiter: currentDelimiter + 1)
     }
     
-    static func extractNegativeNumbers(numbers:[String])->[Int]{
+    private func extractNegativeNumbers(numbers:[String])->[Int]{
         return numbers.filter { $0.numberOrZero < 0 }.map { $0.numberOrZero }
     }
 }
