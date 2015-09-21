@@ -17,13 +17,6 @@ class StringCalculator {
         return numbersDivided.map { $0.numberOrZero }.filter { $0 <= 1000 }.reduce(0, combine: +)
     }
     
-    static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
-        if currentDelimiter == delimiters.count {
-            return numbers
-        }
-        return divideNumbers(delimiters, numbers: numbers.flatMap { $0.componentsSeparatedByString(delimiters[currentDelimiter]) }, currentDelimiter: currentDelimiter + 1)
-    }
-    
     static func extractDelimiters(numbers:String)->[String]{
         var delimiters = StringCalculator.DefaultDelimiters
         if numbers.hasPrefix("//") {
@@ -43,13 +36,19 @@ class StringCalculator {
         return delimiters
     }
     
+    static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
+        if currentDelimiter == delimiters.count {
+            return numbers
+        }
+        return divideNumbers(delimiters, numbers: numbers.flatMap { $0.componentsSeparatedByString(delimiters[currentDelimiter]) }, currentDelimiter: currentDelimiter + 1)
+    }
+    
     static func extractNegativeNumbers(numbers:[String])->[Int]{
         return numbers.filter { $0.numberOrZero < 0 }.map { $0.numberOrZero }
     }
 }
 
 extension String {
-    
     var numberOrZero:Int {
         let formatter = NSNumberFormatter()
         let number = formatter.numberFromString(self) as? Int
