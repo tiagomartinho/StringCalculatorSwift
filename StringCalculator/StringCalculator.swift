@@ -26,20 +26,18 @@ class StringCalculator {
     }
     
     static func hasCustomDelimiters(numbers:String)->Bool {
-        return numbers.hasPrefix("//")
+        return numbers.hasPrefix(InitialDelimiter)
     }
     
     static func extractCustomDelimiter(numbers:String)->String{
-        let startIndex:String.Index
-        let endIndex:String.Index
+        var startIndex = numbers.startIndex.advancedBy(InitialDelimiter.characters.count)
+        var endIndex = numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
+        
         if numbers.containsString("[") && numbers.containsString("]") {
             startIndex = numbers.rangeOfString("[", options: .BackwardsSearch)!.startIndex.advancedBy(1)
             endIndex = numbers.rangeOfString("]", options: .BackwardsSearch)!.startIndex
         }
-        else {
-            startIndex = numbers.startIndex.advancedBy(2)
-            endIndex = numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
-        }
+
         return numbers[startIndex..<endIndex]
     }
     
