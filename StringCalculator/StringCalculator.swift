@@ -19,21 +19,28 @@ class StringCalculator {
     
     static func extractDelimiters(numbers:String)->[String]{
         var delimiters = StringCalculator.DefaultDelimiters
-        if numbers.hasPrefix("//") {
-            let startIndex:String.Index
-            let endIndex:String.Index
-            if numbers.containsString("[") && numbers.containsString("]") {
-                startIndex = numbers.rangeOfString("[", options: .BackwardsSearch)!.startIndex.advancedBy(1)
-                endIndex = numbers.rangeOfString("]", options: .BackwardsSearch)!.startIndex
-            }
-            else {
-                startIndex = numbers.startIndex.advancedBy(2)
-                endIndex = numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
-            }
-            let delimiter = numbers[startIndex..<endIndex]
-            delimiters.append(delimiter)
+        if hasCustomDelimiters(numbers) {
+            delimiters.append(extractCustomDelimiter(numbers))
         }
         return delimiters
+    }
+    
+    static func hasCustomDelimiters(numbers:String)->Bool {
+        return numbers.hasPrefix("//")
+    }
+    
+    static func extractCustomDelimiter(numbers:String)->String{
+        let startIndex:String.Index
+        let endIndex:String.Index
+        if numbers.containsString("[") && numbers.containsString("]") {
+            startIndex = numbers.rangeOfString("[", options: .BackwardsSearch)!.startIndex.advancedBy(1)
+            endIndex = numbers.rangeOfString("]", options: .BackwardsSearch)!.startIndex
+        }
+        else {
+            startIndex = numbers.startIndex.advancedBy(2)
+            endIndex = numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
+        }
+        return numbers[startIndex..<endIndex]
     }
     
     static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
