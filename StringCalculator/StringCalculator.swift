@@ -19,7 +19,7 @@ class StringCalculator {
         if negativeNumbers.count > 0 {
             throw StringCalculatorError.NegativeNotAllowed(negativeNumbers: negativeNumbers)
         }
-        return numbersDivided.flatMap { $0.numberOrZero }.filter{ $0 <= 1000 }.reduce(0, combine: +)
+        return numbersDivided.map { $0.numberOrZero }.filter { $0 <= 1000 }.reduce(0, combine: +)
     }
     
     static func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String]{
