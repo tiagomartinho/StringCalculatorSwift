@@ -39,15 +39,12 @@ class StringCalculator {
     }
     
     private func extractCustomDelimiters()->[String] {
-        let startIndex = indexAfterInitialDelimiter
-        let endIndex = indexBeforeFinalDelimiter
-        let customDelimiters = numbers[startIndex..<endIndex]
-        
-        if customDelimiters.containsString(CustomDelimiterStart) && customDelimiters.containsString(CustomDelimiterEnd) {
+        if numbers.containsString(CustomDelimiterStart) && numbers.containsString(CustomDelimiterEnd) {
             return extractMultipleDelimiters()
         }
-
-        return [customDelimiters]
+        else {
+            return extractSingleDelimiter()
+        }
     }
     
     private func extractMultipleDelimiters()->[String] {
@@ -55,6 +52,12 @@ class StringCalculator {
         let endIndex = indexBeforeFinalDelimiter
         let customDelimiters = numbers[startIndex..<endIndex]
         return divide([customDelimiters], WithDelimiters: [CustomDelimiterStart, CustomDelimiterEnd])
+    }
+    
+    private func extractSingleDelimiter()->[String] {
+        let startIndex = indexAfterInitialDelimiter
+        let endIndex = indexBeforeFinalDelimiter
+        return [numbers[startIndex..<endIndex]]
     }
     
     private var indexAfterInitialDelimiter:String.Index {
