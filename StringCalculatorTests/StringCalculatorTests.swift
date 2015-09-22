@@ -43,11 +43,11 @@ class StringCalculatorTests: XCTestCase {
         assertCalculator("//[***]\n1***2***3",expected: 6)
     }
     
-    func DISABLE_testSupportMultipleCustomDelimeters(){
+    func testSupportMultipleCustomDelimeters(){
         assertCalculator("//[*][%]\n1*2%3",expected: 6)
     }
     
-    func DISABLE_testSupportMultipleCustomDelimetersWithMultipleLength(){
+    func testSupportMultipleCustomDelimetersWithMultipleLength(){
         assertCalculator("//[***][%]\n1***2%3",expected: 6)
     }
     
