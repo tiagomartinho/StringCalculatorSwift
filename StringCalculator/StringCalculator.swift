@@ -27,11 +27,10 @@ class StringCalculator {
     }
     
     private func extractDelimiters()->[String]{
-        var delimiters = DefaultDelimiters
         if hasCustomDelimiters {
-            delimiters += extractCustomDelimiters()
+            return DefaultDelimiters + extractCustomDelimiters()
         }
-        return delimiters
+        return DefaultDelimiters
     }
     
     private var hasCustomDelimiters:Bool {
@@ -42,22 +41,15 @@ class StringCalculator {
         if numbers.containsString(CustomDelimiterStart) && numbers.containsString(CustomDelimiterEnd) {
             return extractMultipleDelimiters()
         }
-        else {
-            return extractSingleDelimiter()
-        }
+        return [customDelimiters]
     }
     
     private func extractMultipleDelimiters()->[String] {
-        let startIndex = indexAfterInitialDelimiter
-        let endIndex = indexBeforeFinalDelimiter
-        let customDelimiters = numbers[startIndex..<endIndex]
         return divide([customDelimiters], WithDelimiters: [CustomDelimiterStart, CustomDelimiterEnd])
     }
     
-    private func extractSingleDelimiter()->[String] {
-        let startIndex = indexAfterInitialDelimiter
-        let endIndex = indexBeforeFinalDelimiter
-        return [numbers[startIndex..<endIndex]]
+    private var customDelimiters:String {
+        return numbers[indexAfterInitialDelimiter..<indexBeforeFinalDelimiter]
     }
     
     private var indexAfterInitialDelimiter:String.Index {
