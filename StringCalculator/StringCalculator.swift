@@ -5,6 +5,8 @@ class StringCalculator {
     private let CommaDelimiter = ","
     private let NewLineDelimiter = "\n"
     private let InitialDelimiter = "//"
+    private let CustomDelimiterStart = "["
+    private let CustomDelimiterEnd = "]"
     
     private let DefaultDelimiters: [String]
     private let numbers:String
@@ -27,7 +29,7 @@ class StringCalculator {
     private func extractDelimiters()->[String]{
         var delimiters = DefaultDelimiters
         if hasCustomDelimiters {
-            delimiters.append(extractCustomDelimiter())
+            delimiters += extractCustomDelimiters()
         }
         return delimiters
     }
@@ -36,16 +38,16 @@ class StringCalculator {
         return numbers.hasPrefix(InitialDelimiter)
     }
     
-    private func extractCustomDelimiter()->String {
+    private func extractCustomDelimiters()->[String] {
         var startIndex = indexAfterInitialDelimiter
         var endIndex = indexBeforeFinalDelimiter
         
-        if numbers.containsString("[") && numbers.containsString("]") {
-            startIndex = numbers.rangeOfString("[", options: .BackwardsSearch)!.startIndex.advancedBy(1)
-            endIndex = numbers.rangeOfString("]", options: .BackwardsSearch)!.startIndex
+        if numbers.containsString(CustomDelimiterStart) && numbers.containsString(CustomDelimiterEnd) {
+            startIndex = numbers.rangeOfString(CustomDelimiterStart, options: .BackwardsSearch)!.startIndex.advancedBy(1)
+            endIndex = numbers.rangeOfString(CustomDelimiterEnd, options: .BackwardsSearch)!.startIndex
         }
 
-        return numbers[startIndex..<endIndex]
+        return [numbers[startIndex..<endIndex]]
     }
     
     private var indexAfterInitialDelimiter:String.Index {
