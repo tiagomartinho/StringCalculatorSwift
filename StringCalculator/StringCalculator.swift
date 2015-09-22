@@ -18,7 +18,7 @@ class StringCalculator {
     
     func add() throws ->Int {
         let delimiters = extractDelimiters()
-        let numbersDivided = divideNumbers(delimiters,numbers:[numbers])
+        let numbersDivided = divide([numbers], WithDelimiters: delimiters)
         let negativeNumbers = extractNegativeNumbers(numbersDivided)
         if negativeNumbers.count > 0 {
             throw StringCalculatorError.NegativeNotAllowed(negativeNumbers: negativeNumbers)
@@ -54,7 +54,7 @@ class StringCalculator {
         let startIndex = indexAfterInitialDelimiter
         let endIndex = indexBeforeFinalDelimiter
         let customDelimiters = numbers[startIndex..<endIndex]
-        return divideNumbers([CustomDelimiterStart, CustomDelimiterEnd], numbers: [customDelimiters])
+        return divide([customDelimiters], WithDelimiters: [CustomDelimiterStart, CustomDelimiterEnd])
     }
     
     private var indexAfterInitialDelimiter:String.Index {
@@ -65,11 +65,11 @@ class StringCalculator {
         return numbers.rangeOfString(NewLineDelimiter, options: .BackwardsSearch)!.startIndex
     }
     
-    private func divideNumbers(delimiters:[String], numbers:[String], currentDelimiter:Int=0)->[String] {
+    private func divide(numbers:[String], WithDelimiters delimiters:[String], currentDelimiter:Int=0)->[String] {
         if currentDelimiter == delimiters.count {
             return numbers
         }
-        return divideNumbers(delimiters, numbers: numbers.flatMap { $0.componentsSeparatedByString(delimiters[currentDelimiter]) }, currentDelimiter: currentDelimiter + 1)
+        return divide(numbers.flatMap { $0.componentsSeparatedByString(delimiters[currentDelimiter]) }, WithDelimiters: delimiters, currentDelimiter: currentDelimiter + 1)
     }
     
     private func extractNegativeNumbers(numbers:[String])->[Int]{
