@@ -28,7 +28,7 @@ class StringCalculator {
     
     private func extractDelimiters()->[String]{
         if hasCustomDelimiters {
-            return DefaultDelimiters + extractCustomDelimiters()
+            return extractCustomDelimiters() + DefaultDelimiters
         }
         return DefaultDelimiters
     }
@@ -38,10 +38,14 @@ class StringCalculator {
     }
     
     private func extractCustomDelimiters()->[String] {
-        if numbers.containsString(CustomDelimiterStart) && numbers.containsString(CustomDelimiterEnd) {
+        if hasMultipleDelimiters {
             return extractMultipleDelimiters()
         }
         return [customDelimiters]
+    }
+    
+    private var hasMultipleDelimiters:Bool {
+        return numbers.containsString(CustomDelimiterStart) && numbers.containsString(CustomDelimiterEnd)
     }
     
     private func extractMultipleDelimiters()->[String] {
