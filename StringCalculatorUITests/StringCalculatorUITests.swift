@@ -28,4 +28,12 @@ class StringCalculatorUITests: XCTestCase {
         XCTAssertEqual("",stringInputTextField?.value as? String)
         XCTAssertEqual("",resultLabel?.label)
     }
+    
+    func testCalculateValue(){
+        stringInputTextField?.tap()
+        stringInputTextField?.typeText("1,2,3")
+        calculateButton?.tap()
+        XCTAssertEqual("1,2,3",stringInputTextField?.value as? String)
+        XCTAssertEqual("6",resultLabel?.label)
+    }
 }
