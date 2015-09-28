@@ -10,6 +10,8 @@ class StringCalculatorViewController: UIViewController {
         let calculator = StringCalculator(numbers: stringInput.text ?? "")
         do {
             result.text = "\(try calculator.add())"
+        } catch StringCalculatorError.NegativeNotAllowed(let negativeNumbers){
+            result.text = "Negative numbers are not allowed. Negative Numbers: \(negativeNumbers)"
         }
         catch {
         }

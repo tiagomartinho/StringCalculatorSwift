@@ -36,4 +36,12 @@ class StringCalculatorUITests: XCTestCase {
         XCTAssertEqual("1,2,3",stringInputTextField?.value as? String)
         XCTAssertEqual("6",resultLabel?.label)
     }
+    
+    func testCalculateWithNegativesNumbers(){
+        stringInputTextField?.tap()
+        stringInputTextField?.typeText("-1,2,-3")
+        calculateButton?.tap()
+        XCTAssertEqual("-1,2,-3",stringInputTextField?.value as? String)
+        XCTAssertEqual("Negative numbers are not allowed. Negative Numbers: [-1, -3]",resultLabel?.label)
+    }
 }

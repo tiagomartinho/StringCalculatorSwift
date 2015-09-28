@@ -38,7 +38,7 @@
                                     <action selector="calculate" destination="BYZ-38-t0r" eventType="touchUpInside" id="FOA-3f-9i8"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAL-kZ-b2n">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAL-kZ-b2n">
                                 <rect key="frame" x="304" y="104" width="276" height="20"/>
                                 <accessibility key="accessibilityConfiguration" identifier="result"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
