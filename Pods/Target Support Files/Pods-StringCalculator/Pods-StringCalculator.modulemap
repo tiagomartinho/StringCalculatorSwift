@@ -1,0 +1,6 @@
+framework module Pods_StringCalculator {
+  umbrella header "Pods-StringCalculator-umbrella.h"
+
+  export *
+  module * { export * }
+}
