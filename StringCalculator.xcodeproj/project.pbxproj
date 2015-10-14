@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D28C99D183F09CE95DB5B30B /* Pods_StringCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8929571443473B098AE3FD21 /* Pods_StringCalculator.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D28C99D183F09CE95DB5B30B /* Pods_StringCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8929571443473B098AE3FD21 /* Pods_StringCalculator.framework */; };
 		EA2A16F31B98792200F5FF08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A16F21B98792200F5FF08 /* AppDelegate.swift */; };
 		EA2A16F51B98792200F5FF08 /* StringCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A16F41B98792200F5FF08 /* StringCalculatorViewController.swift */; };
 		EA2A16F81B98792200F5FF08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA2A16F61B98792200F5FF08 /* Main.storyboard */; };
@@ -166,6 +166,7 @@
 				EA2A16ED1B98792200F5FF08 /* Resources */,
 				9E98E1779D0B1A43110236B2 /* Embed Pods Frameworks */,
 				C07C8350EDFF04FD5502C4D2 /* Copy Pods Resources */,
+				EAABC56C1BCE7E640055CB09 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -326,6 +327,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StringCalculator/Pods-StringCalculator-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EAABC56C1BCE7E640055CB09 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 71002fce528e43c12db3883d519a3f11464d1889 e4947bc85f37beffe5e3e1a929d3d52ec5d6e89d51f402fda3cab5b74cbd2b07\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
