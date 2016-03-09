@@ -1,5 +1,3 @@
-import Foundation
-
 class StringCalculator {
     
     private let CommaDelimiter = ","
@@ -74,16 +72,4 @@ class StringCalculator {
     private func extractNegativeNumbers(numbers:[String])->[Int]{
         return numbers.filter { $0.numberOrZero < 0 }.map { $0.numberOrZero }
     }
-}
-
-extension String {
-    var numberOrZero:Int {
-        let formatter = NSNumberFormatter()
-        let number = formatter.numberFromString(self) as? Int
-        return number ?? 0
-    }
-}
-
-enum StringCalculatorError: ErrorType {
-    case NegativeNotAllowed(negativeNumbers: [Int])
 }
